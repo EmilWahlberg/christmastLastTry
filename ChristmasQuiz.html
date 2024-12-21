@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Quiz</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('Backdrop.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .christmas-ball {
+            width: 250px;
+            height: 250px;
+            background: url('ChristmasBall.png') no-repeat center center;
+            background-size: contain;
+            cursor: pointer;
+            display: inline-block;
+        }
+        .christmas-ball:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+        .question-answer {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            max-width: 80%;
+            word-wrap: break-word;
+            transition: background 0.3s ease;
+        }
+
+        .question-answer.answer {
+            background: rgba(0, 128, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="christmas-ball" onclick="toggleQuestionAnswer()"></div>
+        <div class="question-answer" id="questionAnswer">Press the ball to start!</div>
+    </div>
+
+    <script>
+        const quizData = [
+            { question: "Before Phil Collins, who was the lead singer of Genesis?", answer: "Peter Gabriel" },
+            { question: "Which Beatle crossed Abbey Road in the famous album cover first?", answer: "John." },
+            { question: "In The Big Lebowski, The Dude can't stand which band?", answer: "The Eagles" },
+            { question: "Name the city of the birth of The Beatles in 1960?", answer: "Liverpool." },
+            { question: "Keith Moon and John Entwistle of The Who are said to have inspired the name of which other classic rock band?", answer: "Led Zeppelin" },
+            { question: "Who was the first Beatle to get married?", answer: "John Lennon" },
+            { question: "What rock icon was the founder of The Society for the Prevention of Cruelty to Long-haired Men?", answer: "David Bowie" },
+            { question: "Who was the original drummer for the Beatles?", answer: "Pete Best." },
+            { question: "Which of the Beatles did some fans believe had died and been replaced by a double?", answer: "Paul" },
+            { question: "Paul McCartney credits which artist with teaching him everything he knows?", answer: "Little Richard" },
+            { question: "Eminem's 8 Mile is named after a road in which city?", answer: "Detroit" },
+            { question: "For what crime was Paul McCartney deported from Germany?", answer: "Arson." },
+            { question: "What artists made up the supergroup The Traveling Wilburys?", answer: "George Harrison, Roy Orbison, Jeff Lynne, Tom Petty and Bob Dylan" },
+            { question: "Paul McCartney and John Lennon wrote which Rolling Stones song?", answer: "'I Wanna Be Your Man'" },
+            { question: "Believe it or not, Jimi Hendrix only had one Top 40 hit. Which song was it?", answer: "'All Along the Watchtower'" },
+            { question: "Which Aerosmith song was nominated for both Best Original Song and Worst Original Song?", answer: "“I Don’t Want to Miss a Thing”." },
+            { question: "What did Queen vocalist Freddie Mercury attribute his enhanced vocal range to?", answer: "His four extra teeth." },
+            { question: "How many studio albums did Nirvana release?", answer: "Three albums." },
+            { question: "Whose son became the Who’s drummer in 1996?", answer: "Ringo Starr’s son Zak Starkey." },
+            { question: "Who dances with Bruce Springsteen in the music video for “Dancing in the Dark”?", answer: "Courteney Cox." },
+            { question: "What song is this lyric from? “Living is easy with eyes closed, misunderstanding all you see, it’s getting hard to be someone.”", answer: "‘Strawberry Fields Forever’." },
+            { question: "Art Garfunkel initially declined to sing one of Simon & Garfunkel's biggest hits solo. Which song is it?", answer: "'Bridge Over Troubled Water'" },
+            {answer: "Thank you for playing!"}
+        ];
+        let currentIndex = 0;
+        let showingQuestion = true;
+
+        function toggleQuestionAnswer() {
+            const displayElement = document.getElementById('questionAnswer');
+            if (showingQuestion) {
+                displayElement.textContent = quizData[currentIndex].question;
+                displayElement.classList.remove('answer');
+            } else {
+                displayElement.textContent = quizData[currentIndex].answer;
+                displayElement.classList.add('answer');
+                currentIndex = (currentIndex + 1) % quizData.length;
+            }
+            showingQuestion = !showingQuestion;
+        }
+    </script>
+</body>
+</html>
